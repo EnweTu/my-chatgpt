@@ -1,6 +1,9 @@
 import { Configuration, OpenAIApi } from 'openai';
 
-export default function Home({openaiApiKey}) {
+interface Props {
+  openaiApiKey: string
+}
+export default function Home({openaiApiKey}: Props) {
   function newChat() {
     const config = new Configuration({
       apiKey: openaiApiKey,
@@ -26,5 +29,7 @@ export default function Home({openaiApiKey}) {
 
 export async function getStaticProps() {
   const openaiApiKey: string = process.env.OPENAI_API_KEY as string;
-  return { props: {openaiApiKey} }
+  return { props: {
+    openaiApiKey: openaiApiKey
+  } }
 }
